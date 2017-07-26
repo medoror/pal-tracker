@@ -2,33 +2,12 @@ package io.pivotal.pal.tracker.controller;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
 
 //@RestController
 public class EnvController {
-
-
-//    @Value("${PORT:NOT SET}")
-//    String port;
-//    @Value("${MEMORY_LIMIT:NOT SET}")
-//    String memoryLimit;
-//    @Value("${CF_INSTANCE_INDEX:NOT SET}")
-//    String cfInstanceIndex;
-//    @Value("${CF_INSTANCE_ADDR:NOT SET}")
-//    String cfInstanceAddr;
-//
-//    // The method signature has errors in intellij
-//    // https://stackoverflow.com/questions/26889970/intellij-incorrectly-saying-no-beans-of-type-found-for-autowired-repository
-//    public EnvController(String port, String memLimit, String cfInstanceIndex, String cfInstanceAddr) {
-//        this.port = port;
-//        this.memoryLimit = memLimit;
-//        this.cfInstanceIndex = cfInstanceIndex;
-//        this.cfInstanceAddr = cfInstanceAddr;
-//    }
 
     private final String port;
     private final String memoryLimit;

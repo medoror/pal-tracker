@@ -158,8 +158,8 @@ public class JdbcTimeEntryRepositoryTest {
         assertThat(foundEntry.get("count")).isEqualTo(0L);
     }
 
-    @After
-    public void tearDown(){
+//    @After
+//    public void tearDown(){
 //        jdbcTemplate.execute("DELETE FROM time_entries");
-    }
+//    }
 }

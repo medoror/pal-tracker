@@ -16,6 +16,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("mysql:mysql-connector-java:8.0.12")
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.5.4.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.5.4.RELEASE'
     compile 'io.micrometer:micrometer-core:latest.integration'
     testCompile("org.springframework.boot:spring-boot-starter-test")
 
