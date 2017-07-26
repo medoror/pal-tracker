@@ -4,7 +4,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.mysql.cj.jdbc.MysqlDataSource;
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.DistributionSummary;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -21,6 +24,19 @@ public class PalTrackerApplication {
     @Bean
     TimeEntryRepository timeEntryRepository(DataSource dataSource) {
         return new JdbcTimeEntryRepository(dataSource);
+    }
+
+
+    @Bean
+    DistributionSummary distributionSummary(){
+        MeterRegistry meterRegistry = new SimpleMeterRegistry();
+        return meterRegistry.summary("timeEntry.summary");
+    }
+
+    @Bean
+    Counter actionCounter(){
+        MeterRegistry meterRegistry = new SimpleMeterRegistry();
+        return meterRegistry.counter("timeEntry.actionCounter");
     }
 
     @Bean
