@@ -46,17 +46,17 @@ public class EnvController {
         this.cfInstanceIndex = cfInstanceIndex;
         this.cfInstanceAddress = cfInstanceAddress;
     }
-//
-//    @GetMapping("/env")
-//    public Map<String, String> getEnv() {
-//        Map<String, String> envMap = new HashMap<>();
-//
-//        envMap.put("PORT", port);
-//        envMap.put("MEMORY_LIMIT", memoryLimit);
-//        envMap.put("CF_INSTANCE_INDEX", cfInstanceIndex);
-//        envMap.put("CF_INSTANCE_ADDR", cfInstanceAddress );
-//
-//        return envMap;
-//
-//    }
+
+    @GetMapping("/env")
+    public Map<String, String> getEnv() {
+        Map<String, String> envMap = new HashMap<>();
+
+        envMap.put("PORT", port);
+        envMap.put("MEMORY_LIMIT", memoryLimit);
+        envMap.put("CF_INSTANCE_INDEX", cfInstanceIndex);
+        envMap.put("CF_INSTANCE_ADDR", cfInstanceAddress );
+
+        return envMap;
+
+    }
 }
