@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/time")
+@RequestMapping("/time-entries")
 public class TimeEntryController {
 
     private TimeEntryRepository timeEntryRepository;
@@ -20,10 +20,10 @@ public class TimeEntryController {
         this.timeEntryRepository = timeEntryRepository;
     }
 
-    @GetMapping(value ="/read", produces = "application/json")
-    public ResponseEntity<TimeEntry> read(long l) {
+    @GetMapping(value ="/{id}", produces = "application/json")
+    public ResponseEntity<TimeEntry> read(@PathVariable long id) {
 
-        TimeEntry toFind = timeEntryRepository.find(l);
+        TimeEntry toFind = timeEntryRepository.find(id);
 
         if( toFind == null  )
         {
@@ -32,29 +32,29 @@ public class TimeEntryController {
         return new ResponseEntity(toFind, HttpStatus.OK);
     }
 
-    @PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
-    public ResponseEntity create(TimeEntry timeEntryToCreate) {
+    @PostMapping()
+    public ResponseEntity create(@RequestBody TimeEntry timeEntryToCreate) {
         return new ResponseEntity(timeEntryRepository.create(timeEntryToCreate), HttpStatus.CREATED);
     }
 
-    @DeleteMapping(value = "delete", consumes = "application/json")
-    public ResponseEntity<TimeEntry> delete(long l) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<TimeEntry> delete(@PathVariable long id) {
 
         // TODO should probably returned the deleted item
-        timeEntryRepository.delete(l);
+        timeEntryRepository.delete(id);
 
         return new ResponseEntity<>(new TimeEntry(), HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/list")
+    @GetMapping()
     public ResponseEntity<List<TimeEntry>> list() {
         return new ResponseEntity<>(timeEntryRepository.list(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/update", consumes = "application/json", produces = "application/json")
-    public ResponseEntity update(long l, TimeEntry expected) {
+    @PutMapping(value = "/{id}", consumes = "application/json", produces = "application/json")
+    public ResponseEntity update(@PathVariable long id, @RequestBody TimeEntry expected) {
 
-        TimeEntry entry = timeEntryRepository.update(l, expected);
+        TimeEntry entry = timeEntryRepository.update(id, expected);
 
         if( entry != null){
             return new ResponseEntity(entry, HttpStatus.OK);
