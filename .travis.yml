@@ -26,7 +26,7 @@ jobs:
       deploy:
         provider: releases
         api_key: $GITHUB_OAUTH_TOKEN
-        file: "build/libs/pal-tracker-bootleg.jar"
+        file: "build/libs/pal-tracker.jar"
         skip_cleanup: true
     - stage: deploy to review
       language: java
@@ -39,7 +39,7 @@ jobs:
         - curl https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/5.1.1/flyway-commandline-5.1.1-linux-x64.tar.gz | tar xvz
       script:
         - echo "Downloading $RELEASE_TAG"
-        - wget -P build/libs https://github.com/$GITHUB_USERNAME/pal-tracker/releases/download/$RELEASE_TAG/pal-tracker-bootleg.jar
+        - wget -P build/libs https://github.com/$GITHUB_USERNAME/pal-tracker/releases/download/$RELEASE_TAG/pal-tracker.jar
       before_deploy:
         - echo "Deploying $RELEASE_TAG to review"
       after_success:
