@@ -19,6 +19,7 @@ public class TimeEntryHealthIndicator implements HealthIndicator {
 
         Health.Builder builder = new Health.Builder();
         long size = timeEntryRepository.list().size();
+        System.out.println("------- size: "+size);
 
         if( size < MAX_TIME_ENTRIES )
             builder.down();

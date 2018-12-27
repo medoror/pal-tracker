@@ -5,6 +5,7 @@ import com.mysql.cj.jdbc.MysqlDataSource;
 import io.pivotal.pal.tracker.JdbcTimeEntryRepository;
 import io.pivotal.pal.tracker.TimeEntry;
 import io.pivotal.pal.tracker.TimeEntryRepository;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -155,5 +156,10 @@ public class JdbcTimeEntryRepositoryTest {
 
         Map<String, Object> foundEntry = jdbcTemplate.queryForMap("Select count(*) count from time_entries where id = ?", 999);
         assertThat(foundEntry.get("count")).isEqualTo(0L);
+    }
+
+    @After
+    public void tearDown(){
+//        jdbcTemplate.execute("DELETE FROM time_entries");
     }
 }
